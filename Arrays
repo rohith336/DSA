@@ -164,7 +164,45 @@ int main(){
     int k;
     cin>>k;
     le(a, n, k);
-    
+
+}
+7.Maximum consecutive ones
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+    int a[]={1, 1, 0, 1, 1, 1,0,1,1,1,1,1};
+    int n=sizeof(a)/sizeof(a[0]);
+    int max=INT_MIN;
+    int count=1;
+    for(int i=0; i<n; i++){
+        if(a[i]==a[i+1]){
+            count++;
+        }
+        else{
+            if(count>=max){
+                max=count;
+            }
+              count=1;
+        }
+    }
+    cout<<max;
+}
+8.Find the number which repeat only one and other numbers twice
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+    int a[]={1,1,2,2,4,4,5};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k=a[0];
+    for(int i=1; i<n; i++){
+        k=k^a[i];
+    }
+    cout<<k;
     
 }
+9.
 
