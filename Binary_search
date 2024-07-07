@@ -1,0 +1,34 @@
+1.Binary search
+
+#include <bits/stdc++.h>
+using namespace std;
+
+  int you(int a[],  int n, int k) { 
+      int l=0;
+      int r=n-1;
+      int mid;
+      while(l<=r){
+          mid=(l+r)/2;
+          if(a[mid]==k){
+              return mid;
+          }
+          else if(a[mid]>k){
+              r=mid-1;
+          }
+          else{
+              l=mid+1;
+          }
+      }
+      return -1;
+  }
+
+int main()
+{
+    int a[]={3, 4, 6, 7, 9, 12, 16, 17};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k;
+    cin>>k;
+    cout<<you(a, n, k);
+    return 0;
+}
+2.Lower bound
