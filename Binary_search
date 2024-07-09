@@ -32,3 +32,431 @@ int main()
     return 0;
 }
 2.Lower bound
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int io(int a[], int low, int high, int k){
+    int mid;
+    int ans;
+    while(low<=high){
+         mid=(low+high)/2;
+        if(a[mid]>=k){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+   return ans;
+}
+int main()
+{
+    int a[]={3,5,8,15,19};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k;
+    cin>>k;
+    int low=0;
+    int high=n-1;
+    cout<<io(a, low, high, k);
+    
+    return 0;
+}
+3.Upper bound
+#include <bits/stdc++.h>
+using namespace std;
+
+int io(int a[], int low, int high, int k){
+    int mid;
+    int ans;
+    while(low<=high){
+         mid=(low+high)/2;
+        if(a[mid]<=k){
+            ans=mid;
+            low=mid+1;
+            
+        }
+        else{
+            high=mid-1;
+        }
+    }
+   return ans;
+}
+int main()
+{
+    int a[]={3,5,8,15,19};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k;
+    cin>>k;
+    int low=0;
+    int high=n-1;
+    cout<<io(a, low, high, k);
+    
+    return 0;
+}
+4.Floor /ceil
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int io(int a[], int low, int high, int k){
+    int mid;
+    int ans;
+    while(low<=high){
+         mid=(low+high)/2;
+        if(a[mid]>=k){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+   return ans;
+}
+
+int op(int a[], int low, int high, int k){
+    int mid;
+    int ans;
+    while(low<=high){
+         mid=(low+high)/2;
+        if(a[mid]<=k){
+            ans=mid;
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+            
+        }
+    }
+   return ans;
+}
+int main()
+{
+    int a[]={3,5,8,15,19};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k;
+    cin>>k;
+    int low=0;
+    int high=n-1;
+    cout<<io(a, low, high, k);
+    cout<<op(a, low, high, k);
+    
+    return 0;
+}
+5.Last occurrence in a sorted array
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int op(int a[], int low, int high, int k){
+    int mid;
+    int ans=-1;
+    while(low<=high){
+         mid=(low+high)/2;
+        if(a[mid]<=k){
+            if(a[mid]==k){
+                ans=mid; 
+            }
+           
+            low=mid+1;   
+        }
+        else{
+            high=mid-1;
+        }
+    }
+   return ans;
+}
+int main()
+{
+    int a[]={3,4,13,13,13,20,40};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k;
+    cin>>k;
+    int low=0;
+    int high=n-1;
+    
+    cout<<op(a, low, high, k);
+    
+    return 0;
+}
+6.First occurrence in a sorted array
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int op(int a[], int low, int high, int k){
+    int mid;
+    int ans=-1;
+    while(low<=high){
+         mid=(low+high)/2;
+        if(a[mid]>=k){
+            if(a[mid]==k){
+                ans=mid; 
+            }
+           
+            high=mid-1;   
+        }
+        else{
+            low=mid+1;
+        }
+    }
+   return ans;
+}
+int main()
+{
+    int a[]={3,4,13,13,13,20,40};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k;
+    cin>>k;
+    int low=0;
+    int high=n-1;
+    
+    cout<<op(a, low, high, k);
+    
+    return 0;
+}
+7.count occurrences
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int op(int a[], int low, int high, int k){
+    int mid;
+    int ans=-1;
+    while(low<=high){
+         mid=(low+high)/2;
+        if(a[mid]>=k){
+            if(a[mid]==k){
+                ans=mid; 
+            }
+           
+            high=mid-1;   
+        }
+        else{
+            low=mid+1;
+        }
+    }
+   return ans;
+}
+
+int ip(int a[], int low, int high, int k){
+    int mid;
+    int ans=-1;
+    while(low<=high){
+         mid=(low+high)/2;
+        if(a[mid]<=k){
+            if(a[mid]==k){
+                ans=mid; 
+            }
+           
+              low=mid+1; 
+        }
+        else{
+            high=mid-1;
+            
+        }
+    }
+   return ans;
+}
+int main()
+{
+    int a[]={3,4,13,13,13,20,40,40,40,40,40,40};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k;
+    cin>>k;
+    int low=0;
+    int high=n-1;
+    int f=op(a, low, high, k);
+    low=0;
+    high=n-1;
+    int l=ip(a, low, high, k);
+    if(l==-1 || f==-1){
+        cout<<"no element";
+    }
+    else{
+       cout<<(l-f)+1; 
+    }
+    
+    
+    return 0;
+}
+8.Search in sorted array |
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int op(int a[], int low, int high, int k){
+    int mid;
+    while(low<=high){
+        mid=(low+high)/2;
+        if(a[mid]==k){
+            return 1;
+        }
+        if(a[low]==a[mid] && a[mid]==a[high]){
+            low=low+1;
+            high=high-1;
+        }
+        if(a[low]<=a[mid]){
+            if(a[low]<=k && a[mid]>=k){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        else{
+            if(a[high]>=k && a[mid]<=k){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+    }
+    return 0;
+}
+
+int main()
+{
+    int a[]={7, 8, 1, 2, 3, 3, 3, 4, 5};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k;
+    cin>>k;
+    int low=0;
+    int high=n-1;
+    cout<<op(a, low, high, k);
+    
+    return 0;
+}
+9.Minimum in sorted array
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int op(int a[], int low, int high){
+    int mid;
+    int ans=INT_MAX;
+    while(low<=high){
+        mid=(low+high)/2;
+        
+        if(a[low]<=a[mid]){
+           if(ans>a[low]){
+             ans=a[low];
+           }
+          
+           low=mid+1;
+        }
+        else{
+            if(ans>a[mid]){
+               ans=a[mid]; 
+            }
+            high=mid-1;
+        }
+    }
+    return ans;
+}
+
+int main()
+{
+    int a[]={7, 8, 1, 2, 3, 3, 3, 3, 4, 5, 6};
+    int n=sizeof(a)/sizeof(a[0]);
+    int low=0;
+    int high=n-1;
+    int g=op(a, low, high);
+    cout<<g; 
+    return 0;
+}
+10.Peak element
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int op(int a[], int low, int high, int n){
+    int mid;
+    int ans;
+    
+    if(a[0]>a[1]){
+        return 0;
+    }
+    if(a[n-1]>a[n-2]){
+        return n-1;
+    }
+    
+    while(low<=high){
+        mid=(low+high)/2;
+        if(a[mid-1]<a[mid] && a[mid]>a[mid+1]){
+            return mid;
+        }
+        
+        if(a[mid]<a[mid+1]){
+            low=mid+1;
+        }
+        else {
+            high=mid-1;
+        }
+    }
+    return ans;
+}
+
+int main()
+{
+    int a[]={1,2,3,4,5,6,7,8,5,1};
+    int n=sizeof(a)/sizeof(a[0]);
+    int low=0;
+    int high=n-1;
+    int g=op(a, low, high, n);
+    cout<<g; 
+    return 0;
+}
+11.Search single element in the array
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ 
+int op(int a[], int low, int high,  int n){
+    int mid;
+    
+    if(n==1){
+        return a[0];
+    }
+    if(a[0]!=a[1]){
+        return a[0];
+    }
+    if(a[n-1]!=a[n-2]){
+        return 
+    }
+    
+    while(low<=high){
+        mid=(low+high)/2;
+        if(a[mid-1]!=a[mid] && a[mid]!=a[mid+1]){
+            return a[mid];
+        }
+        if((a[mid-1]==a[mid] && mid%2==1) || (a[mid]==a[mid+1] && mid%2==0)){
+            low=mid+1;
+        }
+        else {
+            high=mid-1;
+        }
+    }
+    return -1;
+}
+
+int main()
+{
+    int a[]={1,1,2,2,3,3,4,5,5,6,6};
+    int n=sizeof(a)/sizeof(a[0]);
+    int low=0;
+    int high=n-1;
+    
+    int g=op(a, low, high, n);
+    cout<<g; 
+    return 0;
+}
+12.
