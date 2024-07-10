@@ -459,4 +459,30 @@ int main()
     cout<<g; 
     return 0;
 }
-12.
+12.Find the square root of a number
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    int ans;
+    int low=1; 
+    int high=n;
+    int mid;
+    while(low<=high){
+        mid=(low+high)/2;
+        int val=mid*mid;
+        if((val)<=n){
+            ans=mid;
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    
+    cout<<ans;
+    return 0;
+}
