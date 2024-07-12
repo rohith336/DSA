@@ -31,4 +31,72 @@ public:
         return res;
     }
 };
-3.
+3.Isomorphic strings
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        map <char, char> mp;
+        for(int i=0; i<s.length(); i++){
+            if(mp.find(s[i])!=mp.end()){
+                  if(mp[s[i]]!=t[i]){
+                    return false;
+                }
+            }
+            else{
+                for(auto x :mp){
+                    if(t[i]==x.second){
+                        return false;
+                    }
+                }
+                mp[s[i]]=t[i];
+            }  
+        }
+         return true;
+    }
+};
+4.Maximum nesting depth of parenthesis
+class Solution {
+public:
+    int maxDepth(string s){
+        int count=0;
+        int max=0;
+        for(int i=0; i<s.length(); i++){
+            if(s[i]=='('){
+                count++;
+                if(count>max){
+                    max=count;
+                }
+            }
+            else if(s[i]==')'){
+                count--;
+            }
+        }
+        return max;
+    }
+};
+5.Sort characters by frequency
+class Solution {
+public:
+    string frequencySort(string s) {
+        map<char, int> mp;
+        for(int i=0; i<s.length(); i++){
+            mp[s[i]]++;
+        }
+        priority_queue <pair <int, char> > pq;
+        string ans="";
+        for(auto x: mp){
+            pq.push({x.second, x.first});
+        }
+
+        while(!pq.empty()){
+            int n=pq.top().first;
+            while(n!=0){
+                ans+=pq.top().second;
+                n--;
+            }
+            pq.pop();
+        }
+        return ans;
+    }
+};
+
