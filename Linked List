@@ -231,4 +231,345 @@ int main()
     
     return 0;
 }
-6.
+6.Construct a doulby linked list 
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  Node *prev;
+  
+  Node(int data){
+      this->data=data;
+      this->next=NULL;
+      this->prev=NULL;
+  }
+};
+
+int main()
+{
+    int a[]={2,5,9,1,67};
+    int n=sizeof(a)/sizeof(a[0]);
+    Node *head = new Node(a[0]);
+    Node *current= head;
+    for(int i=1; i<n; i++){
+        Node *temp = new Node(a[i]);
+        current->next = temp;
+        temp->prev=current;
+        current=current->next;
+    }
+    
+    while(head!=NULL){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    
+    return 0;
+}
+7.Insert a node in doubly linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  Node *prev;
+  
+  Node(int data){
+      this->data=data;
+      this->next=NULL;
+      this->prev=NULL;
+  }
+};
+
+int main()
+{
+    int a[]={2,5,9,1,67};
+    int n=sizeof(a)/sizeof(a[0]);
+    Node *head = new Node(a[0]);
+    Node *current= head;
+    Node * qw =head;
+    for(int i=1; i<n; i++){
+        Node *temp = new Node(a[i]);
+        current->next = temp;
+        temp->prev=current;
+        current=current->next;
+    }
+    int k;
+    cout<<"k:";
+    cin>>k;
+    int l;
+    cout<<"data:";
+    cin>>l;
+    int count=1;
+    while(count<k-1){
+        head=head->next;
+        count++;
+    }
+    
+    Node * temp = new Node(l);
+    Node *oi = head->next;
+    head->next=temp;
+    temp->prev=head;
+    temp->next=oi;
+    oi->prev=temp;
+    
+    while(qw->next!=NULL){
+        cout<<qw->data<<" ";
+        qw=qw->next;
+    }
+    cout<<qw->data;
+    cout<<endl;
+    
+    while(qw!=NULL){
+        cout<<qw->data<<" ";
+        qw=qw->prev;
+    }
+    
+    
+    return 0;
+}
+8.Delete a node at doubly linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  Node *prev;
+  
+  Node(int data){
+      this->data=data;
+      this->next=NULL;
+      this->prev=NULL;
+  }
+};
+
+int main()
+{
+    int a[]={2,5,9,1,67};
+    int n=sizeof(a)/sizeof(a[0]);
+    Node *head = new Node(a[0]);
+    Node *current= head;
+    Node * qw =head;
+    for(int i=1; i<n; i++){
+        Node *temp = new Node(a[i]);
+        current->next = temp;
+        temp->prev=current;
+        current=current->next;
+    }
+    int k;
+    cout<<"k:";
+    cin>>k;
+    int count=1;
+    while(count<k){
+        head=head->next;
+        count++;
+    }
+    
+    head->prev->next=head->next;
+    head->next->prev=head->prev;
+    
+    head->next=NULL;
+    head->prev=NULL;
+    
+    while(qw->next!=NULL){
+        cout<<qw->data<<" ";
+        qw=qw->next;
+    }
+    cout<<qw->data;
+    cout<<endl;
+    
+    while(qw!=NULL){
+        cout<<qw->data<<" ";
+        qw=qw->prev;
+    }
+    
+    
+    return 0;
+}
+9.Reverse a doubly linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  Node *prev;
+  
+  Node(int data){
+      this->data=data;
+      this->next=NULL;
+      this->prev=NULL;
+  }
+};
+
+int main()
+{
+    int a[]={2,5,9,1,67};
+    int n=sizeof(a)/sizeof(a[0]);
+    Node *head = new Node(a[0]);
+    Node *current= head;
+    Node * ou =head;
+    for(int i=1; i<n; i++){
+        Node *temp = new Node(a[i]);
+        current->next = temp;
+        temp->prev=current;
+        current=current->next;
+    }
+    
+    Node *curr = head;
+    Node *per=NULL;
+    Node *temp;
+   while(head!=NULL){
+       head=head->next;
+       temp=curr->next;
+       curr->next=per;
+       curr->prev=temp;
+       per=curr;
+       curr=head;
+   }
+   
+   while(per!=NULL){
+       cout<<per->data<<" ";
+       per=per->next;
+   }
+   
+    
+    return 0;
+}
+10.Find the middle of linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  
+  Node(int data){
+      this->data=data;
+      this->next=NULL;
+  }
+};
+
+int main()
+{
+    int a[]={2,5,9,1,67,68};
+    int n=sizeof(a)/sizeof(a[0]);
+    Node * head = new Node(a[0]);
+    Node * cur = head;
+    for(int i=1; i<n; i++){
+        cur->next= new Node(a[i]);
+        cur=cur->next;
+    }
+    
+    Node *slow = head;
+    Node *fast = head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    cout<<slow->data;
+   
+    
+    return 0;
+}
+12.Reverse a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  
+  Node(int data){
+      this->data=data;
+      this->next=NULL;
+  }
+};
+
+int main()
+{
+    int a[]={2,5,9,1,67,68};
+    int n=sizeof(a)/sizeof(a[0]);
+    Node * head = new Node(a[0]);
+    Node * cur = head;
+    for(int i=1; i<n; i++){
+        cur->next= new Node(a[i]);
+        cur=cur->next;
+    }
+    
+    Node * curr = head;
+    Node * per = NULL; 
+    Node * temp;
+    while(head!=NULL){
+        head=head->next;
+        temp = curr->next;
+        curr->next = per;
+        per=curr;
+        curr=head;
+    }
+    
+    while(per!=NULL){
+        cout<<per->data<<" ";
+        per=per->next;
+    }
+    
+    return 0;
+}
+13.Detect a loop in linked list
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode * slow = head;
+        ListNode * fast = head;
+        int flag=0;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast){
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1){
+            return true;
+        }
+        
+            return false;
+
+    }
+};
+14.Starting point of a loop
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode * slow = head;
+        ListNode * fast = head;
+        while(fast!=NULL && fast->next!=NULL){
+
+            slow=slow->next;
+            fast=fast->next->next;
+
+            if(slow==fast){
+                slow=head;
+                while(slow!=fast){
+                    slow=slow->next;
+                    fast=fast->next;
+                }
+                cout<<count;
+                return slow;
+            }
+            
+        }
+        return NULL;
+    }
+};
+15.
