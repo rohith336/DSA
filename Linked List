@@ -1,0 +1,234 @@
+1.construct a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  
+  Node(int data){
+      this->data=data;
+      this->next=next;
+  }
+};
+
+int main()
+{
+    int a[]={2,45,55,7};
+    int n=sizeof(a)/sizeof(a[0]);
+   
+    
+    Node *head= new Node(a[0]);
+    Node *current =head;
+    
+ 
+    for(int i=1; i<n; i++){
+        current->next=new Node(a[i]);
+        current=current->next;
+    }
+  
+    
+    while(head!=NULL){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    
+    return 0;
+}
+
+2.Insert a node in a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  
+  Node(int data){
+      this->data=data;
+      this->next=next;
+  }
+};
+
+int main()
+{
+    int a[]={2,45,55,7};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k, l;
+    cout<<"the position:";
+    cin>>k;
+    cout<<"the data:";
+    cin>>l;
+    
+    
+    Node *head= new Node(a[0]);
+    Node *current =head;
+    Node *ou = head;
+ 
+    for(int i=1; i<n; i++){
+        current->next=new Node(a[i]);
+        current=current->next;
+    }
+    int count=1;
+    while(count<k-1){
+        head=head->next;
+        count++;
+    }
+    Node *temp=new Node(l);
+    temp->next=head->next;
+    head->next=temp;
+    
+    while(ou!=NULL){
+        cout<<ou->data<<" ";
+        ou=ou->next;
+    }
+    
+    return 0;
+}
+
+3.Delete a node in a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  
+  Node(int data){
+      this->data=data;
+      this->next=next;
+  }
+};
+
+int main()
+{
+    int a[]={2,45,55,7};
+    int n=sizeof(a)/sizeof(a[0]);
+    int k;
+    cout<<"the position:";
+    cin>>k;
+    
+    Node *head= new Node(a[0]);
+    Node *current =head;
+    Node *ou = head;
+ 
+    for(int i=1; i<n; i++){
+        current->next=new Node(a[i]);
+        current=current->next;
+    }
+    int count=1;
+    while(count<k-1){
+        head=head->next;
+        count++;
+    }
+    cout<<head->data<<endl;
+    head->next=head->next->next;
+    head->next->next=NULL;
+    
+    while(ou!=NULL){
+        cout<<ou->data<<" ";
+        ou=ou->next;
+    }
+    
+    return 0;
+}
+4.Length of a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  
+  Node(int data){
+      this->data=data;
+      this->next=next;
+  }
+};
+
+int main()
+{
+    int a[]={2,45,55,7};
+    int n=sizeof(a)/sizeof(a[0]);
+    
+  
+    Node *head= new Node(a[0]);
+    Node *current =head;
+    // Node *ou = head;
+ 
+    for(int i=1; i<n; i++){
+        current->next=new Node(a[i]);
+        current=current->next;
+    }
+    
+    int count=0;
+    while(head!=NULL){
+        head=head->next;
+        count++;
+    }
+  
+    
+    return 0;
+}
+5.Search an element in the linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  
+  Node(int data){
+      this->data=data;
+      this->next=next;
+  }
+};
+
+int main()
+{
+    int a[]={2,45,55,7};
+    int n=sizeof(a)/sizeof(a[0]);
+    // int k, l;
+    // cout<<"the position:";
+    // cin>>k;
+    // cout<<"the data:";
+    // cin>>l;
+    
+    
+    Node *head= new Node(a[0]);
+    Node *current =head;
+    // Node *ou = head;
+ 
+    for(int i=1; i<n; i++){
+        current->next=new Node(a[i]);
+        current=current->next;
+    }
+    
+    int count=0;
+    while(head!=NULL){
+        head=head->next;
+        count++;
+    }
+    cout<<count;
+    // int count=1;
+    // while(count<k-1){
+    //     head=head->next;
+    //     count++;
+    // }
+    // Node *temp=new Node(l);
+    // temp->next=head->next;
+    // head->next=temp;
+    
+    // while(ou!=NULL){
+    //     cout<<ou->data<<" ";
+    //     ou=ou->next;
+    // }
+    
+    return 0;
+}
+6.
