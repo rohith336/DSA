@@ -572,4 +572,91 @@ public:
         return NULL;
     }
 };
-15.
+15.Palindrome or not in a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node *next;
+  
+  Node(int data){
+      this->data=data;
+      this->next=NULL;
+  }
+};
+
+Node * revLi(Node * slow, int count){
+    Node *temp  = slow;
+    if(count%2==0){
+    temp=temp->next;
+    slow->next=NULL;
+    }
+    
+    Node * cur = temp;
+    Node * per = NULL;
+    while(temp!=NULL){
+        temp=temp->next;
+        cur->next=per;
+        per=cur;
+        cur=temp;
+    }
+    
+    return per;
+    
+}
+
+int main()
+{
+    int a[]={1,2,3,3,2,1};
+    int n=sizeof(a)/sizeof(a[0]);
+    Node * head = new Node(a[0]);
+    Node * cur = head;
+    Node * jug = head;
+    int flag=0;
+    int count=1;
+    for(int i=1; i<n; i++){
+        cur->next= new Node(a[i]);
+        cur=cur->next;
+        count++;
+    }
+    
+    Node * slow = head;
+    Node * fast = head->next;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    Node * second = revLi(slow, count);
+    
+    while(head!=NULL){
+        if(head->data!=second->data){
+            flag=1;
+        }
+        head=head->next;
+        second=second->next;
+    }
+    
+    if(flag==1){
+        cout<<"Not a palindrome";
+    }
+    else{
+        cout<<"palindrome";
+    }
+    return 0;
+}
+16.Find intersection point of two linked lists
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode * d1 = headA;
+        ListNode * d2 = headB;
+
+        while(d1!=d2){
+            d1 = d1 == NULL? headB : d1->next;
+            d2 = d2 == NULL? headA : d2->next;
+        }
+        return d1;
+    }
+};
