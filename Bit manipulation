@@ -1,0 +1,74 @@
+1.Clear bit, Set bit, Get bit
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    
+    int num;
+    cout<<"n:";
+    cin>>num;
+    int i;
+    cout<<"pos:";
+    cin>>i;
+    
+    cout<<((1<<(i-1))&(num)!=0)<<" ";
+        cout<<(num | (1<<(i-1)))<<" ";
+        int k=num & ~(1<<(i-1));
+        cout<<k;
+    return 0;
+}
+2.Power of two
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        bool k=true;
+        if(n==1){
+            return true;
+        }
+
+        if(n & (1)!=0){
+            return false;
+        }
+        return k;
+    }
+};
+3.Odd or even
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        bool k=true;
+        if(n==1){
+            return true;
+        }
+
+        if(n & (1)!=0){
+            return false;
+        }
+        return k;
+    }
+};
+4.Set the rightmost unset-bit to set
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    
+    int n=6;
+    //clear ith bit;
+    int k=log2(n);
+        int i;
+        for(i=0; i<=k; i++){
+            int w=(n & (1<<i));
+            if(w==0){
+                break;
+            }
+        }
+        int u=~(1<<i);
+        int j=(n & u);
+        int r=(n | (1<<i));
+        cout<<r;
+    return 0;
+}
+5.
