@@ -1,6 +1,17 @@
-Generate all binary strings
+1.Generate all binary strings
 #include <bits/stdc++.h>
 using namespace std;
+
+int io(int i, int n, int zeen, int onen, int sum){
+        if(i!=1 && i>n){
+           return sum;
+        }
+        onen=zeen;
+        zeen=sum;
+        sum=zeen+onen;
+        i++;
+    return io(i, n, zeen, onen, sum);
+}
 
 int main()
 {
@@ -11,19 +22,9 @@ int main()
     int zeen =1;
     int onen =1;
     int sum=zeen+onen;
-    if(n==1){
-        cout<<sum;
-    }
     int i=2;
-    while(i<=n){
-        
-        onen=zeen;
-        zeen=sum;
-        sum=zeen+onen;
-        i++;
-    }
-    
-    cout<<sum;
-
+    cout<<io(i, n, zeen, onen, sum);
     return 0;
 }
+2.
+
