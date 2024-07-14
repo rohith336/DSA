@@ -1,0 +1,29 @@
+Generate all binary strings
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cout<<"n:";
+    cin>>n;
+    
+    int zeen =1;
+    int onen =1;
+    int sum=zeen+onen;
+    if(n==1){
+        cout<<sum;
+    }
+    int i=2;
+    while(i<=n){
+        
+        onen=zeen;
+        zeen=sum;
+        sum=zeen+onen;
+        i++;
+    }
+    
+    cout<<sum;
+
+    return 0;
+}
