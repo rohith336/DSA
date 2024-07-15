@@ -26,5 +26,37 @@ int main()
     cout<<io(i, n, zeen, onen, sum);
     return 0;
 }
-2.
+2.Print all subsequences
+#include <bits/stdc++.h>
+using namespace std;
+
+void as(int i, vector<int> v, int a[],  int n){
+    if(i==n){
+       for(auto x:v){
+           cout<<"{"<<x<<"}"<<" ";
+       }
+       if(v.size()==0){
+           cout<<"{}";
+       }
+       cout<<endl;
+       return;
+    }
+    v.push_back(a[i]);
+    i=i+1;
+    as(i, v, a, n);
+    v.pop_back();
+    as(i, v, a, n);
+}
+
+int main()
+{
+    
+    int a[]={3,1,2};
+    int n=3;
+    vector<int> v;
+    as(0, v, a, n);
+    
+    return 0;
+}
+
 
