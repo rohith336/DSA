@@ -58,5 +58,124 @@ int main()
     
     return 0;
 }
+3.Count subsequences with sum k
 
+#include <bits/stdc++.h>
+using namespace std;
+
+int as(int ind,  int sum, int a[], int n, int k){
+    if(ind==n){
+        if(sum==k){
+          return 1;
+        }
+        else{
+           return 0; 
+        }
+    }
+    
+    sum+=a[ind];
+    int l=as(ind+1,  sum, a, n, k);
+    // v.push_back(a[ind]);
+    sum-=a[ind];
+    int r=as(ind+1,  sum, a, n, k);
+    // v.pop_back();
+    return l+r;
+}
+
+int main()
+{
+    int a[]={9,5,4};
+    int n=3;
+    int ind=0;
+    vector<int> v;
+    int k;
+    cout<<"k:";
+    cin>>k;
+    int sum=0;
+    cout<<"count:"<<as(ind, sum, a, n, k);
+
+    return 0;
+}
+4.Check if there exists a subsequence with sum k or not
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool as(int ind,  int sum, int a[], int n, int k){
+    if(ind==n){
+        if(sum==k){
+          return true;
+        }
+        else{
+           return false; 
+        }
+    }
+    
+    sum+=a[ind];
+    if(as(ind+1,  sum, a, n, k)==true){
+        return true;
+    };
+    
+    sum-=a[ind];
+    if(as(ind+1,  sum, a, n, k)==true){
+        return true;
+    };
+    
+    return false;
+}
+
+int main()
+{
+    int a[]={9,5,4};
+    int n=3;
+    int ind=0;
+    vector<int> v;
+    int k;
+    cout<<"k:";
+    cin>>k;
+    int sum=0;
+    cout<<"bool:"<<as(ind, sum, a, n, k);
+
+    return 0;
+}
+5.Combination sum 
+#include <bits/stdc++.h>
+using namespace std;
+
+void as(int ind, vector<int> &v, vector<vector<int>> &ans, int a[], int n, int t){
+    if(ind==n){
+        if(t==0){
+            ans.push_back(v);
+        }
+        cout<<endl;
+        return ;
+    }
+    
+    if(a[ind]<=t){
+        v.push_back(a[ind]);
+        as(ind, v, ans, a, n, t-a[ind]);
+        v.pop_back();
+    }
+    
+    as(ind+1, v, ans, a, n, t);
+    
+}
+
+int main()
+{
+    int a[]={2,3,6,7};
+    int t=7;
+    int ind=0;
+    vector<int> v;
+    vector<vector<int>> ans;
+    as(ind, v, ans, a, 4, t);
+    for(int i=0; i<ans.size(); i++){
+        for(int j=0; j<ans[i].size(); j++){
+            cout<<ans[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
+6.
 
