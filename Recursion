@@ -177,5 +177,38 @@ int main()
     }
     return 0;
 }
-6.
+6.Subset sum
+#include<bits/stdc++.h>
+using namespace std;
+
+void hug(int ind, vector<int> &a, vector<int> &v, int n, vector<int> &ans){
+    if(ind==n){
+        int sum=0;
+        for(auto x:v){
+            sum+=x;
+        }
+        ans.push_back(sum);
+        return;
+    }
+    
+    hug(ind+1, a, v, n, ans);
+    v.push_back(a[ind]);
+    hug(ind+1,a, v, n, ans);
+    v.pop_back();
+   
+}
+
+int main(){
+    
+    vector<int> a={5,2,1};
+    int n=a.size();
+    vector<int> v;
+    vector<int> ans;
+    hug(0, a, v, n, ans);
+    for(auto x:ans){
+        cout<<x<<" ";
+    }
+    
+}
+7.
 
