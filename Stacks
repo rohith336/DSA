@@ -1,0 +1,194 @@
+1.Create a stack using an array
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+class Stack{
+    int top;
+    int *a;
+    int size;
+    
+    public:
+    Stack(){
+        top=-1;
+        size=1000;
+        a= new int(size);
+    }
+    
+    void push(int data){
+        top++;
+        a[top]=data;
+    }
+    
+    int pop(){
+        int temp=a[top];
+        top--;
+        return temp;
+    }
+    int Size(){
+        return top+1;
+    }
+    int Top(){
+        return a[top];
+    }
+};
+
+int main()
+{
+    
+    Stack s;
+    s.push(5);
+    s.push(7);
+    s.push(1);
+    
+    cout<<"top:"<<s.Top()<<" ";
+    cout<<"size:"<<s.Size()<<" ";
+    cout<<"pop:"<<s.pop()<<" ";
+    cout<<"top"<<s.Top()<<" ";
+    cout<<"size"<<s.Size()<<" ";
+    return 0;
+}
+2.Queue using arrays
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+class Queue{
+    int top;
+    int rear;
+    int *a;
+    int maxSize;
+    int currsize;
+    
+    public:
+    Queue(int maxSize){
+        this->maxSize=maxSize;
+        top=-1;
+        rear=-1;
+        currsize=0;
+        a= new int(maxSize);
+    }
+    
+    void push(int data){
+        if(currsize==maxSize){
+            cout<<"Maximum size";
+            exit(1);
+        }
+        if(rear==-1){
+            top++;
+            rear++;
+        }
+        else{
+            rear++;
+        }
+        a[rear]=data;
+        currsize++;
+    }
+    
+    int pop(){
+        if(top==-1){
+            cout<<"it is empty";
+            exit(1);
+        }
+        int temp=a[top];
+        if(currsize==1){
+            rear=-1;
+            top=-1;
+        }
+        else{
+            top++;
+        }
+        currsize--;
+        return temp;
+    }
+    int Size(){
+        return (rear-top)+1;
+    }
+    int Top(){
+        if(top==-1){
+            cout<<"Queue is empty";
+            exit(1);
+        }
+        return a[rear];
+    }
+};
+
+int main()
+{
+    
+    Queue s(5);
+    
+   
+    s.push(5);
+    s.push(7);
+    s.push(1);
+    s.push(3);
+    s.push(4);
+    
+    
+    
+    
+    cout<<"top:"<<s.Top()<<" ";
+    cout<<"size:"<<s.Size()<<" ";
+    cout<<"pop:"<<s.pop()<<" ";
+    cout<<"top"<<s.Top()<<" ";
+    cout<<"size"<<s.Size()<<" ";
+    return 0;
+}
+3.Implement stack using queue
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+class Stack{
+    
+    queue<int> q;
+    public:
+    void push(int n){
+        int s=q.size();
+        q.push(n);
+        for(int i=0; i<s; i++){
+            q.push(q.front());
+            q.pop();
+        }
+    }
+    
+    int pop(){
+        int t=q.front();
+        q.pop();
+        return t;
+    }
+    int Top(){
+        
+        return q.front();
+    }
+    int Size(){
+        return q.size();
+    }
+    
+};
+
+int main()
+{
+    
+    Stack s;
+    
+   
+    s.push(5);
+    s.push(7);
+    s.push(1);
+    s.push(3);
+    s.push(4);
+    
+    
+    cout<<"top:"<<s.Top()<<" ";
+    cout<<"size:"<<s.Size()<<" ";
+    cout<<"pop:"<<s.pop()<<" ";
+    cout<<"top"<<s.Top()<<" ";
+    cout<<"size"<<s.Size()<<" ";
+    return 0;
+}
+4.
