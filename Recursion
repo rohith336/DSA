@@ -210,5 +210,27 @@ int main(){
     }
     
 }
-7.
+7. Subsets sum 2
+class Solution {
+public:
+
+    void as(int ind, vector<int> &a, vector<int> &v, vector<vector<int>> &ans){
+        ans.push_back(v);
+        for(int i=ind; i<a.size(); i++){
+            if(i>ind && a[i]==a[i-1]) continue;
+            v.push_back(a[i]);
+            as(i+1, a, v, ans);
+            v.pop_back();
+        }
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<int> v;
+        vector<vector<int>> ans;
+        as(0, nums, v, ans);
+        return ans;
+    }
+};
+
 
