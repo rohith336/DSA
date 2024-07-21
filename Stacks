@@ -191,4 +191,134 @@ int main()
     cout<<"size"<<s.Size()<<" ";
     return 0;
 }
-4.Next problem
+4.Implement min stack
+class MinStack {
+public:
+    stack<int> st;
+    int min;
+    MinStack() {
+        
+    }
+    
+    void push(int val) {
+        if(st.empty()){
+            min=val;
+            st.push(val);
+        }
+        else{
+            if(val>min){
+                st.push(val);
+            }
+            else{
+                long long int k=2*val-min;
+                min=val;
+                st.push(k);
+            }
+        }
+    }
+    
+    void pop() {
+        if(st.empty()){
+            return;
+        }
+        else{
+            int l=st.top();
+            st.pop();
+          if(l<min){
+            min=2*min-l;
+        }
+        }
+        
+    }
+    
+    int top() {
+        if(st.empty()){
+            return -1; 
+        }
+        else{
+            int u=st.top();
+            if(u<min){
+                return min;
+            }
+            else{
+                return u;
+            }
+        }
+    }
+    
+    int getMin() {
+        return min;
+    }
+};
+5.Next greater element 
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <bits/stdc++.h>
+using namespace std;
+
+void is(int a[], int n){
+    vector<int> v;
+    stack<int> s;
+    
+    for(int i=n-1; i>=0; i--){
+        while(!s.empty() && s.top()<a[i]){
+            s.pop();
+        }
+        if(s.empty()){
+            v.push_back(-1);
+        }
+        else{
+          v.push_back(s.top());  
+        }
+        
+        s.push(a[i]);
+    }
+    
+    reverse(v.begin(), v.end());
+    
+    for(auto x:v){
+        cout<<x<<" ";
+    }
+}
+
+int main()
+{
+    int a[]={1, 4, 3, 5, 9, 2};
+    int n=6;
+    is(a, n);
+
+    return 0;
+}
+6.Next greater element ||
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        vector<int> v;
+        stack <int> s;
+        int n=nums.size();
+        for(int i=(2*n)-1; i>=0; i--){
+            while(!s.empty() && s.top()<=nums[i%n]){
+                s.pop();
+            }
+            if(i<n){
+                if(s.empty()){
+                    v.push_back(-1);
+                }
+                else{
+                    v.push_back(s.top());
+                }
+            }
+            s.push(nums[i%n]);
+        }
+        reverse(v.begin(), v.end());
+        return v;
+    }
+};
+7.
+
