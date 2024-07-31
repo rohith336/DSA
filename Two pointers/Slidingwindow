@@ -1,0 +1,162 @@
+1.Maximum points you can obtain from card
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int is(vector<int> &a, int k){
+    int lsum=0;
+        int rsum=0;
+        int maxLen=0;
+        for(int i=0; i<k; i++){
+            lsum+=a[i];
+        }
+        maxLen=lsum;
+        int j=a.size()-1;
+        for(int i=k-1; i>=0; i--){
+            lsum-=a[i];
+            rsum+=a[j];
+            j--;
+            maxLen=max(maxLen, lsum+rsum);
+        }
+        return maxLen;
+}
+
+int main()
+{
+    vector<int> a={1,2,3,4,5,6,1};
+    cout<<is(a, 3);
+
+    return 0;
+}
+2.Maximum consecutive ones
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int longestOnes(vector<int>& nums, int k) {
+        int l=0;
+        int r=0;
+        int maxLen=0;
+        int zeros=0;
+        int len;
+        while(r<nums.size()){
+            if(nums[r]==0) zeros++;
+            while(zeros>k){
+                if(nums[l]==0) zeros--;
+                l++;
+            }
+            if(zeros<=k){
+                   len=r-l+1;
+            maxLen=max(maxLen, len);
+            }
+            r++;
+        }
+        return maxLen;
+    }
+
+int main()
+{
+    vector<int> a={1,1,1,0,0,0,1,1,1,1,0};
+    cout<<longestOnes(a, 2);
+
+    return 0;
+}
+3.Fruit basket
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int longestOnes(vector<int> &arr) {
+        int l=0;
+        int r=0;
+        int maxLen=0;
+        map<int, int> mp;
+        while(r<arr.size()){
+            mp[arr[r]]++;
+            if(mp.size()>2){
+                mp[arr[l]]--;
+                if(mp[arr[l]]==0){
+                    mp.erase(arr[l]);
+                }
+                l++;
+            }
+            if(mp.size()<=2){
+                maxLen=max(maxLen, r-l+1);
+                 r++;
+            }
+        }
+        return maxLen;
+}
+int main()
+{
+    vector<int> a={3, 1, 2, 2, 2, 2};
+    cout<<longestOnes(a);
+
+    return 0;
+}
+4.Longest substring with atmost k characters
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int longestOnes(string s, int k) {
+        int l=0;
+        int r=0;
+        int maxLen=0;
+        map <char, int> mp;
+        while(r<s.size()){
+            mp[s[r]]++;
+            if(mp.size()>k){
+                mp[s[l]]--;
+                if(mp[s[l]]==0){
+                    mp.erase(s[l]);
+                }
+                l++;
+            }
+            if(mp.size()<=k){
+                maxLen=max(maxLen, r-l+1);
+                r++;
+            }
+        }
+        return maxLen;
+}
+int main()
+{
+    string s="aaabbccd";
+    cout<<longestOnes(s, 2);
+
+    return 0;
+}
+5.Longest Repeating Character Replacement
+
+#include <bits/stdc++.h>
+using namespace std;
+
+ int characterReplacement(string s, int k) {
+        int l=0;
+        int r=0;
+        int maxLen=0;
+        int hash[26]={0};
+        int maxf=0;
+        while(r<s.size()){
+            hash[s[r]-'A']++;
+            maxf=max(maxf, hash[s[r]-'A']);
+            if((r-l+1)-maxf>k){
+                hash[s[l]-'A']--;
+                l++;
+            }
+            if((r-l+1)-maxf<=k){
+                maxLen=max(maxLen, (r-l+1));   
+            }
+            r++;
+        }
+        return maxLen;
+    }
+int main()
+{
+    string s="AAABBCCD";
+    cout<<characterReplacement(s, 2);
+
+    return 0;
+}
+6.
