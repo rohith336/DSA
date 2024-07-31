@@ -1,0 +1,93 @@
+1.Assign cookies
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int findContentChildren(vector<int>& g, vector<int>& s) {
+        sort(g.begin(), g.end());
+        sort(s.begin(), s.end());
+        int l=0;
+        int r=0;
+        int n=g.size();
+        int m=s.size();
+        while(l<n && r<m){
+            if(g[l]<=s[r]){
+                l++;
+            }
+            r++;
+        }
+        return l;
+    }
+
+int main()
+    {
+       vector<int> g = {1,2,3}; 
+       vector<int> s = {1,1};
+       cout<<findContentChildren(g,s);
+       
+    }
+2.Lemonade Change
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool lemonadeChange(vector<int>& bills) {
+        int f=0;
+        int t=0;
+        for(int i=0; i<bills.size(); i++){
+            if(bills[i]==5){
+                f++;
+            }
+            else if(bills[i]==10){
+                if(f!=0){
+                    t++;
+                    f--;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                if(f!=0 && t!=0){
+                    f--;
+                    t--;
+                }
+                else if(f>=3){
+                    f=f-3;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+int main()
+    {
+       vector<int> bills = {5,5,5,10,20};
+       cout<<lemonadeChange(bills);
+       
+    }
+3.Shortest Job first
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+    {
+       vector<int> bt={4, 3, 7, 1, 2};
+       sort(bt.begin(), bt.end());
+    
+        sort(bt.begin(), bt.end());
+        int wt=0;
+        int t=0;
+        for(int i=0; i<bt.size(); i++){
+            wt+=t;
+            t+=bt[i];
+        }
+        
+        wt/=bt.size();
+        cout<<wt; 
+    }
+4.
