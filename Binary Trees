@@ -1,0 +1,55 @@
+1.Inorder Traversal:
+class Solution {
+public:
+
+    void is(TreeNode* root, vector<int> &v){
+        if(root==NULL){
+            return;
+        }
+        is(root->left, v);
+        v.push_back(root->val);
+        is(root->right, v);
+    }
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> v;
+        is(root, v);
+        return v;
+    }
+};
+2.Pre-order Traversal
+class Solution {
+public:
+
+    void is(TreeNode * root, vector<int> &v){
+        if(root==NULL){
+            return;
+        }
+        v.push_back(root->val);
+        is(root->left, v);
+        is(root->right, v);
+    }
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> v;
+        is(root, v);
+        return v;
+    }
+};
+3.Post-order Traversal
+class Solution {
+public:
+
+    void is(TreeNode* root, vector<int> &v){
+        if(root==NULL){
+            return;
+        }
+        is(root->left, v);
+        is(root->right, v);
+        v.push_back(root->val);
+    }
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> v;
+        is(root, v);
+        return v;
+    }
+};
+4.
