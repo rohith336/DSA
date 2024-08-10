@@ -160,4 +160,44 @@ class Solution{
         return ans;
     }
 };
-7.
+7.Maximum depth of a binary tree
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+         if(root==NULL){
+            return 0;
+         }
+         int ls=maxDepth(root->left);
+         int rs=maxDepth(root->right);
+
+         return 1+max(ls, rs);
+    }
+};
+8.Balanced binary tree
+class Solution {
+public:
+
+    int is(TreeNode* root){
+        if(root==NULL){
+            return 0;
+        }
+        int lh, rh;
+        if(root!=NULL){
+               lh=is(root->left);
+               rh=is(root->right);
+        }
+     
+        if(lh==-1 || rh==-1) return -1;
+        if(abs(lh-rh)>1) return -1;
+        return max(lh, rh)+1;
+    }
+
+    bool isBalanced(TreeNode* root) {
+        int l=is(root);
+        if(l==-1){
+            return false;
+        }
+        return true;
+    }
+};
+9.
