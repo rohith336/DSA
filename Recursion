@@ -232,7 +232,7 @@ public:
         return ans;
     }
 };
-Learning new problem generate parenthesis
+Learningenerate parenthesis
 
 
 
