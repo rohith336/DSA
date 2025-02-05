@@ -1,238 +1,67 @@
-1.Generate all binary strings
-#include <bits/stdc++.h>
-using namespace std;
-
-int io(int i, int n, int zeen, int onen, int sum){
-        if(i!=1 && i>n){
-           return sum;
-        }
-        onen=zeen;
-        zeen=sum;
-        sum=zeen+onen;
-        i++;
-    return io(i, n, zeen, onen, sum);
-}
-
-int main()
-{
-    int n;
-    cout<<"n:";
-    cin>>n;
-    
-    int zeen =1;
-    int onen =1;
-    int sum=zeen+onen;
-    int i=2;
-    cout<<io(i, n, zeen, onen, sum);
-    return 0;
-}
-2.Print all subsequences
-#include <bits/stdc++.h>
-using namespace std;
-
-void as(int i, vector<int> v, int a[],  int n){
-    if(i==n){
-       for(auto x:v){
-           cout<<"{"<<x<<"}"<<" ";
-       }
-       if(v.size()==0){
-           cout<<"{}";
-       }
-       cout<<endl;
-       return;
-    }
-    v.push_back(a[i]);
-    i=i+1;
-    as(i, v, a, n);
-    v.pop_back();
-    as(i, v, a, n);
-}
-
-int main()
-{
-    
-    int a[]={3,1,2};
-    int n=3;
-    vector<int> v;
-    as(0, v, a, n);
-    
-    return 0;
-}
-3.Count subsequences with sum k
-
-#include <bits/stdc++.h>
-using namespace std;
-
-int as(int ind,  int sum, int a[], int n, int k){
-    if(ind==n){
-        if(sum==k){
-          return 1;
-        }
-        else{
-           return 0; 
-        }
-    }
-    
-    sum+=a[ind];
-    int l=as(ind+1,  sum, a, n, k);
-    // v.push_back(a[ind]);
-    sum-=a[ind];
-    int r=as(ind+1,  sum, a, n, k);
-    // v.pop_back();
-    return l+r;
-}
-
-int main()
-{
-    int a[]={9,5,4};
-    int n=3;
-    int ind=0;
-    vector<int> v;
-    int k;
-    cout<<"k:";
-    cin>>k;
-    int sum=0;
-    cout<<"count:"<<as(ind, sum, a, n, k);
-
-    return 0;
-}
-4.Check if there exists a subsequence with sum k or not
-
-#include <bits/stdc++.h>
-using namespace std;
-
-bool as(int ind,  int sum, int a[], int n, int k){
-    if(ind==n){
-        if(sum==k){
-          return true;
-        }
-        else{
-           return false; 
-        }
-    }
-    
-    sum+=a[ind];
-    if(as(ind+1,  sum, a, n, k)==true){
-        return true;
-    };
-    
-    sum-=a[ind];
-    if(as(ind+1,  sum, a, n, k)==true){
-        return true;
-    };
-    
-    return false;
-}
-
-int main()
-{
-    int a[]={9,5,4};
-    int n=3;
-    int ind=0;
-    vector<int> v;
-    int k;
-    cout<<"k:";
-    cin>>k;
-    int sum=0;
-    cout<<"bool:"<<as(ind, sum, a, n, k);
-
-    return 0;
-}
-5.Combination sum 
-#include <bits/stdc++.h>
-using namespace std;
-
-void as(int ind, vector<int> &v, vector<vector<int>> &ans, int a[], int n, int t){
-    if(ind==n){
-        if(t==0){
-            ans.push_back(v);
-        }
-        cout<<endl;
-        return ;
-    }
-    
-    if(a[ind]<=t){
-        v.push_back(a[ind]);
-        as(ind, v, ans, a, n, t-a[ind]);
-        v.pop_back();
-    }
-    
-    as(ind+1, v, ans, a, n, t);
-    
-}
-
-int main()
-{
-    int a[]={2,3,6,7};
-    int t=7;
-    int ind=0;
-    vector<int> v;
-    vector<vector<int>> ans;
-    as(ind, v, ans, a, 4, t);
-    for(int i=0; i<ans.size(); i++){
-        for(int j=0; j<ans[i].size(); j++){
-            cout<<ans[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-    return 0;
-}
-6.Subset sum
-#include<bits/stdc++.h>
-using namespace std;
-
-void hug(int ind, vector<int> &a, vector<int> &v, int n, vector<int> &ans){
-    if(ind==n){
-        int sum=0;
-        for(auto x:v){
-            sum+=x;
-        }
-        ans.push_back(sum);
-        return;
-    }
-    
-    hug(ind+1, a, v, n, ans);
-    v.push_back(a[ind]);
-    hug(ind+1,a, v, n, ans);
-    v.pop_back();
-   
-}
-
-int main(){
-    
-    vector<int> a={5,2,1};
-    int n=a.size();
-    vector<int> v;
-    vector<int> ans;
-    hug(0, a, v, n, ans);
-    for(auto x:ans){
-        cout<<x<<" ";
-    }
-    
-}
-7. Subsets sum 2
+1.Print all subsequences
 class Solution {
-public:
 
-    void as(int ind, vector<int> &a, vector<int> &v, vector<vector<int>> &ans){
-        ans.push_back(v);
-        for(int i=ind; i<a.size(); i++){
-            if(i>ind && a[i]==a[i-1]) continue;
-            v.push_back(a[i]);
-            as(i+1, a, v, ans);
-            v.pop_back();
+    void sub(vector<int> &a, vector<int> &ans, vector<int> &v, int ind){
+        
+        if(ind==a.size()){
+            ans.push_back(v);
+            return;
         }
+        
+        v.push_back(a[ind]);
+        sub(a, ans, v, ind+1);
+        v.pop_back();
+        sub(a, ans, v, ind+1);
     }
 
-    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        vector<int> v;
+public:
+    vector<vector<int>> subsets(vector<int>& a) {
+        int n=a.size();
         vector<vector<int>> ans;
-        as(0, nums, v, ans);
+        vector<int> v;
+        int ind=0;
+        sub(a, ans, v, ind);
         return ans;
     }
 };
-8.Sort a stack using recursion
+2.Print only one subsequence which is equal to k
+#include <bits/stdc++.h>
+using namespace std;
 
+bool sub(vector<int> &a, vector<int> &v, int k, int sum, int ind){
+    if(ind==a.size()){
+        if(sum==k){
+            for(auto x:v){
+                cout<<x<<" ";
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    sum+=a[ind];
+    v.push_back(a[ind]);
+    if(sub(a, v, k, sum, ind+1) == true){
+        return true;
+    }
+    sum-=a[ind];
+    v.pop_back();
+    if(sub(a, v, k, sum, ind+1) == true){
+        return true;
+    }
+    return false;
+    
+}
 
+int main()
+{
+    vector<int> a = {1,2,1};
+    int k=2;
+    vector<int> v;
+    int sum=0;
+    int ind=0;
+    sub(a, v, k, sum, ind);
 
+    return 0;
+}
+3.
