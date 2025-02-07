@@ -200,4 +200,84 @@ public:
         return true;
     }
 };
-Start ing no e
+9.Binary tree maximum path sum
+class Solution {
+    int sub(TreeNode* root, int &maxi){
+        if(root == NULL){
+            return 0;
+        }
+        int lh=sub(root->left, maxi);
+        int rh=sub(root->right, maxi);
+        maxi=max(((root->val)+(lh+rh)), maxi);
+        return (root->val)+max(lh,rh);
+    }
+
+public:
+    int maxPathSum(TreeNode* root) {
+        int maxi=INT_MIN;
+        sub(root,maxi);
+        return maxi;
+    }
+};
+10.Same Tree
+class Solution {
+
+    bool sub(TreeNode* p, TreeNode* q){
+        if(p==NULL && q==NULL){
+            return true;
+        }
+
+        if(p==NULL || q==NULL){
+            return false;
+        }
+
+        bool l=sub(p->left, q->left);
+        if(p->val != q->val){
+            return false;
+        }
+        bool r=sub(p->right, q->right);
+
+        if(l==false || r==false){
+            return false;
+        }
+
+        return true;
+    }
+
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        return sub(p,q);
+    }
+};
+11.Binary tree zig zag traversal
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> ans;
+        queue<TreeNode*> q;
+        if(root==NULL){
+            return ans;
+        }
+        q.push(root);
+        bool flag=true;
+        while(!q.empty()){
+            int size = q.size();
+            vector<int> v(size);
+            for(int i=0; i<size; i++){
+                TreeNode* node = q.front();
+                q.pop();
+                
+                int ind = (flag) ? (i) : (size-i-1);
+                v[ind] = node->val;
+
+                if(node->left!=NULL) q.push(node->left);
+                if(node->right!=NULL) q.push(node->right);
+
+            }
+            flag=!flag;
+            ans.push_back(v);
+        }
+        return ans;
+    }
+};
+
