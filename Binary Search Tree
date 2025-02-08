@@ -1,0 +1,124 @@
+1.Search in a binary Tree
+class Solution {
+
+    void sub(TreeNode* &root, int &val, TreeNode* &temp){
+        if(root == NULL){
+            return;
+        }
+        if((root->val)>val){
+            sub(root->left, val, temp);
+        }
+        else if((root->val) == val){
+            temp = root;
+        }
+        else{
+            sub(root->right, val, temp);
+        }
+    }
+
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        TreeNode* temp = NULL;
+        sub(root, val, temp);
+        if(temp ==NULL){
+            return NULL;
+        }
+        return temp;
+    }
+};
+2.Minimum in a binary search tree
+class Solution {
+    
+    void sub(Node* &root, int &mini){
+        if(root == NULL){
+            return;
+        }
+        mini=min(mini, root->data);
+        sub(root->left, mini);
+        sub(root->right, mini);
+    }
+    
+  public:
+    int minValue(Node* root) {
+        int mini=INT_MAX;
+        sub(root, mini);
+        return mini;
+    }
+};
+3.Find Ceil in a bst tree
+int findCeil(Node* root, int k) {
+    
+    int c = -1;
+    
+    while(root!=NULL){
+        
+        if(root->data == k){
+            c= root->data;
+            return c;
+        }
+        
+        if((root->data)>=k){
+            c=root->data;
+            root= root->left;
+        }
+        else{
+            root=root->right;            
+        }
+        
+    }
+    return c;
+   
+}
+4.Find Floor in Bst
+class Solution{
+
+public:
+    int floor(Node* root, int x) {
+        int f = -1;
+        
+        while(root!=NULL){
+            
+            if(root->data == x){
+                f=root->data;
+                return f;
+            }
+            if(root->data<=x){
+                f=root->data;
+                root=root->right;
+            }
+            else{
+                root=root->left;
+            }
+        }
+        return f;
+    }
+};
+5.Insert a node in the bst tree
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        if(root == NULL) {
+            return new TreeNode(val);
+        }
+        TreeNode* curr= root;
+        while(true){
+            if(curr->val <=val){
+                if(curr->right!=NULL){
+                    curr=curr->right;
+                }else{
+                    curr->right= new TreeNode(val);
+                    break;
+                }
+            }else{
+                if(curr->left!=NULL){
+                    curr=curr->left;
+                }else{
+                    curr->left = new TreeNode(val);
+                    break;
+                }
+            }
+        }
+        return root;
+    }
+};
+6.
