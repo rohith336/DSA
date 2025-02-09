@@ -121,4 +121,60 @@ public:
         return root;
     }
 };
-6.
+6.Kth smallest element in a bst
+class Solution {
+
+void sub(TreeNode* root, int k, int &ans, int &count){
+    if(root == NULL){
+        return;
+    }
+
+    sub(root->left, k, ans, count);
+    count++;
+    if(count == k){
+        ans = root->val;
+        return;
+    }
+    sub(root->right, k, ans, count);
+}
+
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        int ans;
+        int count=0 ;
+        sub(root, k, ans, count);
+        return ans;
+    }
+};
+7.Check if it is a valid bst or not
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        long long int min = -1000000000000, max = 1000000000000;
+        return sub(root, min, max);
+    }
+
+    bool sub(TreeNode* root, long long int min, long long int max){
+        if(root == NULL){
+            return true;
+        }
+        if(root->val<=min || root->val>=max) return false;
+        return sub(root->left, min, root->val) && sub(root->right, root->val, max);
+    }
+};
+8.Lca in a bst 
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root==NULL) return NULL;
+        int curr = root->val;
+        if(curr>p->val && curr>q->val){
+            return lowestCommonAncestor(root->left, p, q);
+        }
+        if(curr<p->val && curr<q->val){
+            return lowestCommonAncestor(root->right, p, q);
+        }
+        return root;
+    }
+};
+9.
