@@ -90,4 +90,4 @@ int main()
         wt/=bt.size();
         cout<<wt; 
     }
-4.New progkkk
+
